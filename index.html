@@ -1,0 +1,899 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="منظم مهام المذاكرة"
+    >
+
+    <title>Study Tasks With Maro</title>
+
+    <link rel="stylesheet" href="style.css">
+
+
+    <!-- PWA Manifest -->
+<link rel="manifest" href="manifest.json">
+
+<!-- لون التطبيق -->
+<meta name="theme-color" content="#6366f1">
+
+<!-- دعم الموبايل والتابلت -->
+<meta name="mobile-web-app-capable" content="yes">
+
+<!-- اسم التطبيق على بعض الأجهزة -->
+<meta name="application-name" content="Study Tasks">
+
+<!-- أيقونة -->
+<link rel="icon" href="icon-192.png">
+</head>
+
+<body>
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header class="header">
+
+        <div class="header-content">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    ✓
+                </div>
+
+                <div>
+                    <h1>Study Tasks</h1>
+
+                    <p>
+                        نظم مذاكرتك وأنجز أهدافك 🚀
+                    </p>
+                </div>
+
+            </div>
+
+
+            <button
+                id="themeButton"
+                class="theme-button"
+                title="تغيير المظهر"
+            >
+                🌙
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================
+         MAIN
+    ========================================== -->
+
+    <main class="container">
+
+
+        <!-- =====================================
+             HERO
+        ====================================== -->
+
+        <section class="hero">
+
+            <div>
+
+                <span class="hero-small">
+                    👋 أهلاً بيك
+                </span>
+
+                <h2>
+                    جاهز تنجز مهامك النهارده؟
+                </h2>
+
+                <p>
+                    كل مهمة تخلصها بتقربك خطوة من هدفك 
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             DASHBOARD
+        ====================================== -->
+
+        <section class="dashboard">
+
+
+            <!-- Total -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📚
+                </div>
+
+                <div>
+
+                    <span>
+                        إجمالي المهام
+                    </span>
+
+                    <strong id="totalTasks">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- Completed -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon completed-icon">
+                    ✅
+                </div>
+
+                <div>
+
+                    <span>
+                        المكتملة
+                    </span>
+
+                    <strong id="completedTasks">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- Remaining -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon remaining-icon">
+                    ⏳
+                </div>
+
+                <div>
+
+                    <span>
+                        المتبقية
+                    </span>
+
+                    <strong id="remainingTasks">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- Streak -->
+
+            <div class="stat-card">
+
+                <div class="stat-icon streak-icon">
+                    🔥
+                </div>
+
+                <div>
+
+                    <span>
+                        أيام متتالية
+                    </span>
+
+                    <strong id="streak">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             PROGRESS
+        ====================================== -->
+
+        <section class="progress-section">
+
+            <div class="progress-top">
+
+                <div>
+
+                    <h3>
+                        📊 نسبة الإنجاز
+                    </h3>
+
+                    <p id="progressMessage">
+                        ابدأ أول مهمة ليبدأ الإنجاز!
+                    </p>
+
+                </div>
+
+                <strong id="progressPercent">
+                    0%
+                </strong>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div
+                    id="progressFill"
+                    class="progress-fill"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             SEARCH + FILTER
+        ====================================== -->
+
+        <section class="tools">
+
+            <div class="search-box">
+
+                <span>
+                    🔍
+                </span>
+
+                <input
+                    id="searchInput"
+                    type="text"
+                    placeholder="ابحث عن مهمة..."
+                >
+
+            </div>
+
+
+            <div class="filters">
+
+                <button
+                    class="filter-btn active"
+                    data-filter="all"
+                >
+                    الكل
+                </button>
+
+                <button
+                    class="filter-btn"
+                    data-filter="pending"
+                >
+                    ⏳ غير مكتملة
+                </button>
+
+                <button
+                    class="filter-btn"
+                    data-filter="completed"
+                >
+                    ✅ مكتملة
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             SUBJECTS
+        ====================================== -->
+
+        <section class="subjects-grid">
+
+
+            <!-- =================================
+                 ARABIC
+            ================================== -->
+
+            <article
+                class="subject-card arabic"
+                data-subject="arabic"
+            >
+
+                <div class="subject-header">
+
+                    <div class="subject-icon">
+                        ع
+                    </div>
+
+                    <div class="subject-info">
+
+                        <h3>
+                            عربي
+                        </h3>
+
+                        <span class="task-counter">
+                            0 مهام
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="add-task">
+
+                    <input
+                        class="task-input"
+                        type="text"
+                        placeholder="اكتب مهمة في العربي..."
+                    >
+
+                    <button class="add-btn">
+                        +
+                    </button>
+
+                </div>
+
+
+                <div class="tasks-list"></div>
+
+
+                <div class="subject-actions">
+
+                    <button class="complete-all-btn">
+                        ✓ خلصت كل اللي عليا
+                    </button>
+
+                    <button class="delete-all-btn">
+                        🗑️ مسح الكل
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- =================================
+                 ENGLISH
+            ================================== -->
+
+            <article
+                class="subject-card english"
+                data-subject="english"
+            >
+
+                <div class="subject-header">
+
+                    <div class="subject-icon">
+                        EN
+                    </div>
+
+                    <div class="subject-info">
+
+                        <h3>
+                            English
+                        </h3>
+
+                        <span class="task-counter">
+                            0 مهام
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="add-task">
+
+                    <input
+                        class="task-input"
+                        type="text"
+                        placeholder="Write a new task..."
+                        dir="ltr"
+                    >
+
+                    <button class="add-btn">
+                        +
+                    </button>
+
+                </div>
+
+
+                <div class="tasks-list"></div>
+
+
+                <div class="subject-actions">
+
+                    <button class="complete-all-btn">
+                        ✓ خلصت كل اللي عليا
+                    </button>
+
+                    <button class="delete-all-btn">
+                        🗑️ مسح الكل
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- =================================
+                 CHEMISTRY
+            ================================== -->
+
+            <article
+                class="subject-card chemistry"
+                data-subject="chemistry"
+            >
+
+                <div class="subject-header">
+
+                    <div class="subject-icon">
+                        ⚗️
+                    </div>
+
+                    <div class="subject-info">
+
+                        <h3>
+                            كيمياء
+                        </h3>
+
+                        <span class="task-counter">
+                            0 مهام
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="add-task">
+
+                    <input
+                        class="task-input"
+                        type="text"
+                        placeholder="اكتب مهمة في الكيمياء..."
+                    >
+
+                    <button class="add-btn">
+                        +
+                    </button>
+
+                </div>
+
+
+                <div class="tasks-list"></div>
+
+
+                <div class="subject-actions">
+
+                    <button class="complete-all-btn">
+                        ✓ خلصت كل اللي عليا
+                    </button>
+
+                    <button class="delete-all-btn">
+                        🗑️ مسح الكل
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- =================================
+                 PHYSICS
+            ================================== -->
+
+            <article
+                class="subject-card physics"
+                data-subject="physics"
+            >
+
+                <div class="subject-header">
+
+                    <div class="subject-icon">
+                        ⚡
+                    </div>
+
+                    <div class="subject-info">
+
+                        <h3>
+                            فيزياء
+                        </h3>
+
+                        <span class="task-counter">
+                            0 مهام
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="add-task">
+
+                    <input
+                        class="task-input"
+                        type="text"
+                        placeholder="اكتب مهمة في الفيزياء..."
+                    >
+
+                    <button class="add-btn">
+                        +
+                    </button>
+
+                </div>
+
+
+                <div class="tasks-list"></div>
+
+
+                <div class="subject-actions">
+
+                    <button class="complete-all-btn">
+                        ✓ خلصت كل اللي عليا
+                    </button>
+
+                    <button class="delete-all-btn">
+                        🗑️ مسح الكل
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- =================================
+                 MATHEMATICS
+            ================================== -->
+
+            <article
+                class="subject-card mathematics"
+                data-subject="mathematics"
+            >
+
+                <div class="subject-header">
+
+                    <div class="subject-icon">
+                        ∑
+                    </div>
+
+                    <div class="subject-info">
+
+                        <h3>
+                            رياضيات
+                        </h3>
+
+                        <span class="task-counter">
+                            0 مهام
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="add-task">
+
+                    <input
+                        class="task-input"
+                        type="text"
+                        placeholder="اكتب مهمة في الرياضيات..."
+                    >
+
+                    <button class="add-btn">
+                        +
+                    </button>
+
+                </div>
+
+
+                <div class="tasks-list"></div>
+
+
+                <div class="subject-actions">
+
+                    <button class="complete-all-btn">
+                        ✓ خلصت كل اللي عليا
+                    </button>
+
+                    <button class="delete-all-btn">
+                        🗑️ مسح الكل
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- =================================
+                 GERMAN
+            ================================== -->
+
+            <article
+                class="subject-card german"
+                data-subject="german"
+            >
+
+                <div class="subject-header">
+
+                    <div class="subject-icon">
+                        DE
+                    </div>
+
+                    <div class="subject-info">
+
+                        <h3>
+                            ألماني
+                        </h3>
+
+                        <span class="task-counter">
+                            0 مهام
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="add-task">
+
+                    <input
+                        class="task-input"
+                        type="text"
+                        placeholder="Neue Aufgabe..."
+                        dir="ltr"
+                    >
+
+                    <button class="add-btn">
+                        +
+                    </button>
+
+                </div>
+
+
+                <div class="tasks-list"></div>
+
+
+                <div class="subject-actions">
+
+                    <button class="complete-all-btn">
+                        ✓ خلصت كل اللي عليا
+                    </button>
+
+                    <button class="delete-all-btn">
+                        🗑️ مسح الكل
+                    </button>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- =====================================
+             ACHIEVEMENTS
+        ====================================== -->
+
+        <section class="achievements-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span>
+                        🏆 إنجازاتك
+                    </span>
+
+                    <h2>
+                        استمر في التقدم
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="achievements-grid">
+
+
+                <div
+                    class="achievement"
+                    id="achievement10"
+                >
+
+                    <div class="achievement-icon">
+                        🥉
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            البداية
+                        </h3>
+
+                        <p>
+                            أكمل 10 مهام
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="achievement"
+                    id="achievement50"
+                >
+
+                    <div class="achievement-icon">
+                        🥈
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            مجتهد
+                        </h3>
+
+                        <p>
+                            أكمل 50 مهمة
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="achievement"
+                    id="achievement100"
+                >
+
+                    <div class="achievement-icon">
+                        🥇
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            أسطورة
+                        </h3>
+
+                        <p>
+                            أكمل 100 مهمة
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="achievement"
+                    id="achievementStreak"
+                >
+
+                    <div class="achievement-icon">
+                        🔥
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            الاستمرارية
+                        </h3>
+
+                        <p>
+                            7 أيام متتالية
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================================
+         MOTIVATION POPUP
+    ========================================== -->
+
+    <div
+        id="popup"
+        class="popup-overlay"
+    >
+
+        <div class="motivation-popup">
+
+            <div class="popup-icon">
+                🎉
+            </div>
+
+            <h2>
+                أحسنت! 🔥
+            </h2>
+
+            <p id="motivationText"></p>
+
+            <button id="closePopup">
+                استمر كده 🚀
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         TOAST
+    ========================================== -->
+
+    <div
+        id="toast"
+        class="toast"
+    >
+        تم الحفظ ✅
+    </div>
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer class="footer">
+
+        <p>
+            من صنع
+            <strong>
+                المهندس مروان رامي
+            </strong>
+        </p>
+
+        <p>
+            © جميع الحقوق محفوظة
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+<script>
+    // تشغيل Service Worker
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker
+                .register("./sw.js")
+                .then(() => {
+                    console.log("Service Worker تم تشغيله بنجاح");
+                })
+                .catch(error => {
+                    console.error("Service Worker Error:", error);
+                });
+        });
+    }
+</script>
+</body>
+
+</html>
